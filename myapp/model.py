@@ -15,3 +15,21 @@ class Company(models.Model):
     added_data=models.DateTimeField(auto_now=True)
     active=models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.type
+
+
+class Employee(models.Model):
+    
+    name=models.CharField(max_length=500)
+    email=models.CharField(max_length=50)
+    addres=models.CharField(max_length=200)
+    phone=models.CharField(max_length=120)
+    about=models.TextField()
+    position=models.CharField(max_length=120,choices=
+                          (('Manager','manager'),
+                           ('Software-developer','sd'),
+                           ('project Leader','pl')
+                           ))
+    company=models.ForeignKey(Company,on_delete=models.CASCADE)
+
